@@ -3,13 +3,18 @@ pipeline {
 tools{
 
     maven 'maven'
-    
-            }
+  
+     }
             stages{
         stage('Build Maven'){
             steps{
              checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/surajtivatane/devops-automation']])
              sh 'mvn clean install'
+        }
+    }
+    stage('Unit Tests') {
+        steps{
+            sh "mvn test"
         }
     }
     stage('OWASP Scan') {
@@ -18,6 +23,10 @@ tools{
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+       
+
+
+
     stage('Build docker image'){
             steps{
                 script{
