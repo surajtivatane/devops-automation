@@ -11,7 +11,7 @@ public class DevopsIntegrationApplication {
 
 	@GetMapping
 	public String message(){
-		return "welcome to globant origination";
+		return "welcome to globant originatio";
 	}
 
 	public static void main(String[] args) {
